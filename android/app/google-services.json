@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "997676241773",
+    "project_id": "tidi-d2ce1",
+    "storage_bucket": "tidi-d2ce1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997676241773:android:c180be3eade7ff3ff54064",
+        "android_client_info": {
+          "package_name": "com.example.homebank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997676241773-0js5p93j3mfv0bufi17kl3kjr6gqeqv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHMzcqnvlG4rgsLz0GvLjAIjcrHuoEwXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997676241773-0js5p93j3mfv0bufi17kl3kjr6gqeqv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
