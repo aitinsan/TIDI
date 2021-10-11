@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homebank/ui/style/colors.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -24,15 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                       padding: const EdgeInsets.symmetric(vertical: 0),
                       icon: Icon(Icons.menu),
                       onPressed: () {},
                     ),
-                    // SvgPicture.asset(
-                    //   'Notification.svg',
-                    // ),
+                    SvgPicture.asset(
+                      'assets/icon/ic_notifications.svg',
+                    ),
                   ],
                 ),
                 Padding(
@@ -182,8 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                             
-                              Text('vcxz'),
+                              // Text('vcxz'),
                             ],
                           );
                         },

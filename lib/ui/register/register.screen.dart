@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homebank/ui/bottomNavigation.dart';
 import 'package:homebank/ui/home/home.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
@@ -127,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => Home()),
                   );
                 },
               ),

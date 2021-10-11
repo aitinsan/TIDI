@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:homebank/ui/home/home.screen.dart';
-
+import 'package:homebank/ui/style/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -25,9 +25,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: HomeScreen(),
-      floatingActionButton
-:       FloatingActionButton(
-        child: Icon(Icons.qr_code),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: HomeBankColor.red,
+        child: Icon(Icons.qr_code_scanner, color: HomeBankColor.white),
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -39,121 +39,101 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        // currentScreen =
-                        //     Dashboard(); // if user taps on this dashboard tab will be active
-                        // currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.dashboard,
-                          color: currentTab == 0 ? Colors.blue : Colors.grey,
-                        ),
-                        // Text(
-                        //   'Dashboard',
-                        //   style: TextStyle(
-                        //     color: currentTab == 0 ? Colors.blue : Colors.grey,
-                        //   ),
-                        // ),
-                      ],
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          // currentScreen =
+                          //     Dashboard(); // if user taps on this dashboard tab will be active
+                          // currentTab = 0;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SvgPicture.asset(
+                            'assets/icon/ic_home.svg',
+                            color: currentTab == 0? HomeBankColor.red: HomeBankColor.black,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        // currentScreen =
-                        //     Chat(); // if user taps on this dashboard tab will be active
-                        // currentTab = 1;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.chat,
-                          color: currentTab == 1 ? Colors.blue : Colors.grey,
-                        ),
-                        // Text(
-                        //   'Chats',
-                        //   style: TextStyle(
-                        //     color: currentTab == 1 ? Colors.blue : Colors.grey,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  )
-                ],
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        setState(() {
+                          // currentScreen =
+                          //     Chat(); // if user taps on this dashboard tab will be active
+                          // currentTab = 1;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SvgPicture.asset(
+                            'assets/icon/ic_map.svg',
+                            color: currentTab == 1? HomeBankColor.red: HomeBankColor.black,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
 
               // Right Tab bar icons
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      // setState(() {
-                      //   currentScreen =
-                      //       Profile(); // if user taps on this dashboard tab will be active
-                      //   currentTab = 2;
-                      // });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.dashboard,
-                          color: currentTab == 2 ? Colors.blue : Colors.grey,
-                        ),
-                        // Text(
-                        //   'Profile',
-                        //   style: TextStyle(
-                        //     color: currentTab == 2 ? Colors.blue : Colors.grey,
-                        //   ),
-                        // ),
-                      ],
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        // setState(() {
+                        //   currentScreen =
+                        //       Profile(); // if user taps on this dashboard tab will be active
+                        //   currentTab = 2;
+                        // });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SvgPicture.asset(
+                            'assets/icon/ic_busket.svg',
+                            color: currentTab == 2? HomeBankColor.red: HomeBankColor.black,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      // setState(() {
-                      //   currentScreen =
-                      //       Settings(); // if user taps on this dashboard tab will be active
-                      //   currentTab = 3;
-                      // });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.chat,
-                          color: currentTab == 3 ? Colors.blue : Colors.grey,
-                        ),
-                        // Text(
-                        //   'Settings',
-                        //   style: TextStyle(
-                        //     color: currentTab == 3 ? Colors.blue : Colors.grey,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  )
-                ],
-              )
-
+                    MaterialButton(
+                      minWidth: 40,
+                      onPressed: () {
+                        // setState(() {
+                        //   currentScreen =
+                        //       Settings(); // if user taps on this dashboard tab will be active
+                        //   currentTab = 3;
+                        // });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SvgPicture.asset(
+                            'assets/icon/ic_account.svg',
+                            color: currentTab == 3? HomeBankColor.red: HomeBankColor.black,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),

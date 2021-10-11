@@ -10,7 +10,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'HomeBank User',
       // theme: kThemeData,
-      home: Home(),
+      home: IntroScreen(),
     );
   }
 }
