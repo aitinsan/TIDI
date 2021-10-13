@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homebank/ui/home/home.screen.dart';
+import 'package:homebank/ui/map/map.screen.dart';
 import 'package:homebank/ui/profile/profile.screen.dart';
 import 'package:homebank/ui/scanner/scanner.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
@@ -72,7 +73,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         setState(() {
                           currentScreen =
-                              HomeScreen(); // if user taps on this dashboard tab will be active
+                              MapScreen(); // if user taps on this dashboard tab will be active
                           currentTab = 1;
                         });
                       },
