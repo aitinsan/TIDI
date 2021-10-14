@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homebank/ui/my_billing/billing.screens.dart';
 import 'package:homebank/ui/style/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -108,7 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ),
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => BillingScreen(),
+                                        ),
+                                      );
+                                    },
                                   )
                                 ],
                               ),

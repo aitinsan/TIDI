@@ -34,6 +34,7 @@ class MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(
           'Партнеры',
           style: TextStyle(color: HomeBankColor.red),
