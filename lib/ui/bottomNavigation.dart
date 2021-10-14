@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/home/home.screen.dart';
 import 'package:homebank/ui/map/map.screen.dart';
 import 'package:homebank/ui/profile/profile.screen.dart';
 import 'package:homebank/ui/scanner/scanner.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -28,8 +28,7 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.qr_code_scanner, color: HomeBankColor.white),
         onPressed: () {
           setState(() {
-            currentScreen =
-                ScannerScreen(); // if user taps on this dashboard tab will be active
+            currentScreen = ScannerScreen(); // if user taps on this dashboard tab will be active
             currentTab = 5;
           });
         },
@@ -62,9 +61,7 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           SvgPicture.asset(
                             'assets/icon/ic_home.svg',
-                            color: currentTab == 0
-                                ? HomeBankColor.red
-                                : HomeBankColor.black,
+                            color: currentTab == 0 ? HomeBankColor.red : HomeBankColor.black,
                           ),
                         ],
                       ),
@@ -83,9 +80,7 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           SvgPicture.asset(
                             'assets/icon/ic_map.svg',
-                            color: currentTab == 1
-                                ? HomeBankColor.red
-                                : HomeBankColor.black,
+                            color: currentTab == 1 ? HomeBankColor.red : HomeBankColor.black,
                           ),
                         ],
                       ),
@@ -115,9 +110,7 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           SvgPicture.asset(
                             'assets/icon/ic_busket.svg',
-                            color: currentTab == 2
-                                ? HomeBankColor.red
-                                : HomeBankColor.black,
+                            color: currentTab == 3 ? HomeBankColor.red : HomeBankColor.black,
                           ),
                         ],
                       ),
@@ -136,9 +129,7 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           SvgPicture.asset(
                             'assets/icon/ic_account.svg',
-                            color: currentTab == 3
-                                ? HomeBankColor.red
-                                : HomeBankColor.black,
+                            color: currentTab == 4 ? HomeBankColor.red : HomeBankColor.black,
                           ),
                         ],
                       ),
