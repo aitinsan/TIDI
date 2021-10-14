@@ -5,8 +5,6 @@ import 'package:homebank/ui/home/home.screen.dart';
 import 'package:homebank/ui/map/map.screen.dart';
 import 'package:homebank/ui/profile/profile.screen.dart';
 import 'package:homebank/ui/scanner/scanner.screen.dart';
-import 'package:homebank/ui/profile/profile.screen.dart';
-import 'package:homebank/ui/scanner/scanner.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class Home extends StatefulWidget {
@@ -30,8 +28,7 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.qr_code_scanner, color: HomeBankColor.white),
         onPressed: () {
           setState(() {
-            currentScreen =
-                ScannerScreen(); // if user taps on this dashboard tab will be active
+            currentScreen = ScannerScreen(); // if user taps on this dashboard tab will be active
             currentTab = 5;
           });
         },
@@ -104,7 +101,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         setState(() {
                           currentScreen =
-                              HomeScreen(); // if user taps on this dashboard tab will be active
+                              BasketScreen(); // if user taps on this dashboard tab will be active
                           currentTab = 2;
                         });
                       },
