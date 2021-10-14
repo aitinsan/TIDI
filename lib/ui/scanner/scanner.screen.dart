@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-
+import 'package:homebank/ui/style/colors.dart';
 
 class ScannerScreen extends StatefulWidget {
   @override
@@ -11,44 +11,16 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-  String _scanBarcode = 'Unknown';
+  TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = new TextEditingController();
   }
 
-  Future<void> startBarcodeScanStream() async {
-    FlutterBarcodeScanner.getBarcodeStreamReceiver(
-            '#ff6666', 'Cancel', true, ScanMode.BARCODE)
-        .listen((barcode) => print(barcode));
-  }
-
-  Future<void> scanQR() async {
-    String barcodeScanRes;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
-      print(barcodeScanRes);
-    } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _scanBarcode = barcodeScanRes;
-    });
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.BARCODE);
@@ -57,38 +29,136 @@ class _ScannerScreenState extends State<ScannerScreen> {
       barcodeScanRes = 'Failed to get platform version.';
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
-      _scanBarcode = barcodeScanRes;
+      _controller.text = barcodeScanRes;
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Barcode scan')),
-        body: Builder(
-          builder: (BuildContext context) {
-            return Container(
+        backgroundColor: HomeBankColor.lightest_grey,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(16),
               alignment: Alignment.center,
-              child: Flex(
-                direction: Axis.vertical,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  ElevatedButton(
-                      onPressed: () => scanBarcodeNormal(),
-                      child: Text('Start barcode scan')),
-                  Text('Scan result : $_scanBarcode\n',
-                      style: TextStyle(fontSize: 20))
+                  Text(
+                    "Сканируйте штрихкод",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: HomeBankColor.red,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                  InkWell(
+                    onTap: () => scanBarcodeNormal(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: HomeBankColor.red)
+                          // color: HomeBankColor.grey2,
+                          ),
+                      height: 150,
+                      width: double.infinity,
+                      child: Center(
+                        child: Text(
+                          'Отсканируйте штрихкод',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Или введите вручную',
+                    style: TextStyle(
+                      color: HomeBankColor.red,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  TextField(
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                      ),
+                      focusColor: HomeBankColor.red,
+                      hintText: 'Штрихкод',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Результат поиска:',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 2,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: HomeBankColor.grey2,
+                              ),
+                              child: Image.asset('assets/image/im_product.png'),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text('Oneplus 9'),
+                                  Text('4/64 RAM'),
+                                  Text('5000 kzt'),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        onTap: () {},
+                      );
+                    },
+                  )
                 ],
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
     );

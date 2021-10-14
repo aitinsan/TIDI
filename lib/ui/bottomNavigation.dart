@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/home/home.screen.dart';
+import 'package:homebank/ui/map/map.screen.dart';
+import 'package:homebank/ui/profile/profile.screen.dart';
+import 'package:homebank/ui/scanner/scanner.screen.dart';
 import 'package:homebank/ui/profile/profile.screen.dart';
 import 'package:homebank/ui/scanner/scanner.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
@@ -15,17 +18,6 @@ class _HomeState extends State<Home> {
   // Properties & Variables needed
 
   int currentTab = 0; // to keep track of active tab index
-  final List<Widget> screens = [
-    HomeScreen(),
-    Scaffold(
-      body: Center(
-        child: Text("Map"),
-      ),
-    ),
-    ScannerScreen(),
-    BasketScreen(),
-    ProfileScreen(),
-  ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = HomeScreen(); // Our first view in viewport
 
@@ -38,8 +30,9 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.qr_code_scanner, color: HomeBankColor.white),
         onPressed: () {
           setState(() {
-            currentScreen = screens[2];
-            currentTab = 2;
+            currentScreen =
+                ScannerScreen(); // if user taps on this dashboard tab will be active
+            currentTab = 5;
           });
         },
       ),
@@ -61,7 +54,8 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = screens[0];
+                          currentScreen =
+                              HomeScreen(); // if user taps on this dashboard tab will be active
                           currentTab = 0;
                         });
                       },
@@ -79,7 +73,8 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = screens[1];
+                          currentScreen =
+                              MapScreen(); // if user taps on this dashboard tab will be active
                           currentTab = 1;
                         });
                       },
@@ -108,8 +103,9 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = screens[3];
-                          currentTab = 3;
+                          currentScreen =
+                              HomeScreen(); // if user taps on this dashboard tab will be active
+                          currentTab = 2;
                         });
                       },
                       child: Column(
@@ -126,8 +122,9 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = screens[4];
-                          currentTab = 4;
+                          currentScreen =
+                              ProfileScreen(); // if user taps on this dashboard tab will be active
+                          currentTab = 3;
                         });
                       },
                       child: Column(
