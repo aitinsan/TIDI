@@ -99,9 +99,8 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = BasketScreen(
-                              isCustomer:
-                                  true); // if user taps on this dashboard tab will be active
+                          currentScreen =
+                              BasketScreen(); // if user taps on this dashboard tab will be active
                           currentTab = 2;
                         });
                       },
@@ -119,9 +118,8 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = ProfileScreen(
-                            isCustomer: true,
-                          ); // if user taps on this dashboard tab will be active
+                          currentScreen =
+                              ProfileScreen(); // if user taps on this dashboard tab will be active
                           currentTab = 3;
                         });
                       },

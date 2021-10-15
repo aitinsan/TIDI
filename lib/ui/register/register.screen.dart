@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:homebank/ui/bottomBusinessNavigation.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 import '../bottomNavigation.dart';
 
 class RegisterScreen extends StatefulWidget {
-  final bool isCustomer;
-
-  RegisterScreen({Key key, this.isCustomer}) : super(key: key);
+  RegisterScreen({Key key}) : super(key: key);
 
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -45,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Column(
           children: [
             Text(
-              widget.isCustomer ? 'Регистрация' : "Здраствуйте, уважаемый партнер",
+              'Регистрация',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.w800,
@@ -54,9 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             SizedBox(height: 16),
             Text(
-              widget.isCustomer
-                  ? 'Кредит доступнее с нашим приложением'
-                  : "Введите свои данные для входа",
+              'Кредит доступнее с нашим приложением',
               style: TextStyle(
                 // fontWeight: FontWeight.w800,
                 fontSize: 16,
@@ -75,19 +70,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            if (widget.isCustomer)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    ),
-                    focusColor: HomeBankColor.red,
-                    hintText: 'ИИН',
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                   ),
+                  focusColor: HomeBankColor.red,
+                  hintText: 'ИИН',
                 ),
               ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: TextField(
@@ -134,8 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => widget.isCustomer ? Home() : HomeBusiness()),
+                    MaterialPageRoute(builder: (context) => Home()),
                   );
                 },
               ),

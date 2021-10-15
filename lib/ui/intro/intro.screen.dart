@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homebank/ui/choose/choose_screen.dart';
+import 'package:homebank/ui/register/register.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChooseScreen()),
+                      MaterialPageRoute(builder: (context) => RegisterScreen()),
                     );
                   },
                 ),
