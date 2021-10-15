@@ -1,10 +1,14 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class BasketScreen extends StatefulWidget {
-  const BasketScreen({Key key}) : super(key: key);
+  final bool isCustomer;
+
+  const BasketScreen({Key key, this.isCustomer}) : super(key: key);
 
   @override
   _BasketScreenState createState() => _BasketScreenState();
@@ -23,7 +27,7 @@ class _BasketScreenState extends State<BasketScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: HomeBankColor.white,
         title: Text(
-          "Корзина",
+          widget.isCustomer ? "Корзина" : "Ваши товары",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
@@ -53,39 +57,50 @@ class _BasketScreenState extends State<BasketScreen> {
                 SizedBox(
                   height: 24,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Популярные позиции",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: HomeBankColor.black,
+                if (widget.isCustomer)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Популярные позиции",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: HomeBankColor.black,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          "Показано 564 результата",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: HomeBankColor.black,
+                          SizedBox(
+                            height: 2,
                           ),
-                        ),
-                      ],
-                    ),
-                    SvgPicture.asset(
-                      "assets/icon/ic_filter.svg",
-                      fit: BoxFit.fill,
-                    )
-                  ],
-                ),
+                          Text(
+                            "Показано 564 результата",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: HomeBankColor.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SvgPicture.asset(
+                        "assets/icon/ic_filter.svg",
+                        fit: BoxFit.fill,
+                      )
+                    ],
+                  ),
+                if (!widget.isCustomer)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/icon/ic_filter.svg",
+                        fit: BoxFit.fill,
+                      )
+                    ],
+                  ),
                 SizedBox(
                   height: 6,
                 ),
@@ -188,19 +203,22 @@ class _BasketScreenState extends State<BasketScreen> {
                       Container(
                         height: 36,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: widget.isCustomer
+                              ? MainAxisAlignment.spaceBetween
+                              : MainAxisAlignment.end,
                           children: [
-                            ListView.builder(
-                              itemBuilder: (context, index) {
-                                return Icon(
-                                  Icons.star,
-                                  color: Color(0xFFFFA800),
-                                );
-                              },
-                              itemCount: stars > 3 ? 3 : stars,
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                            ),
+                            if (widget.isCustomer)
+                              ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return Icon(
+                                    Icons.star,
+                                    color: Color(0xFFFFA800),
+                                  );
+                                },
+                                itemCount: stars > 3 ? 3 : stars,
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                              ),
                             InkWell(
                               radius: 32,
                               child: DecoratedBox(
@@ -212,7 +230,7 @@ class _BasketScreenState extends State<BasketScreen> {
                                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                   child: Center(
                                     child: Text(
-                                      'Оформить',
+                                      widget.isCustomer ? 'Оформить' : "Изменить",
                                       style: TextStyle(
                                         color: HomeBankColor.white,
                                         fontSize: 14,
