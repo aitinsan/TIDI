@@ -29,7 +29,6 @@ class _HomeState extends State<Home> {
         onPressed: () {
           setState(() {
             currentScreen = ScannerScreen(); // if user taps on this dashboard tab will be active
-            currentTab = 5;
           });
         },
       ),
@@ -100,8 +99,9 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen =
-                              BasketScreen(); // if user taps on this dashboard tab will be active
+                          currentScreen = BasketScreen(
+                              isCustomer:
+                                  true); // if user taps on this dashboard tab will be active
                           currentTab = 2;
                         });
                       },
@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           SvgPicture.asset(
                             'assets/icon/ic_busket.svg',
-                            color: currentTab == 3 ? HomeBankColor.red : HomeBankColor.black,
+                            color: currentTab == 2 ? HomeBankColor.red : HomeBankColor.black,
                           ),
                         ],
                       ),
@@ -119,8 +119,9 @@ class _HomeState extends State<Home> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen =
-                              ProfileScreen(); // if user taps on this dashboard tab will be active
+                          currentScreen = ProfileScreen(
+                            isCustomer: true,
+                          ); // if user taps on this dashboard tab will be active
                           currentTab = 3;
                         });
                       },
@@ -129,7 +130,7 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           SvgPicture.asset(
                             'assets/icon/ic_account.svg',
-                            color: currentTab == 4 ? HomeBankColor.red : HomeBankColor.black,
+                            color: currentTab == 3 ? HomeBankColor.red : HomeBankColor.black,
                           ),
                         ],
                       ),

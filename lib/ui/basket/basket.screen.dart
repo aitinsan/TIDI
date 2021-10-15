@@ -6,7 +6,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class BasketScreen extends StatefulWidget {
-  const BasketScreen({Key key}) : super(key: key);
+  final bool isCustomer;
+
+  const BasketScreen({Key key, this.isCustomer}) : super(key: key);
 
   @override
   _BasketScreenState createState() => _BasketScreenState();
@@ -18,216 +20,6 @@ class _BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-              backgroundColor: Colors.transparent,
-              isScrollControlled: true,
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.only(topLeft: Radius.circular(43), topRight: Radius.circular(43)),
-              ),
-              context: context,
-              builder: (context) {
-                return BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        top: 18,
-                        left: 32,
-                        right: 32,
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(43), topRight: Radius.circular(43)),
-                      color: HomeBankColor.red,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(bottom: 20),
-                          width: double.infinity,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Добавить товар",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
-                                  color: HomeBankColor.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          "Опишите в подробностях",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16,
-                            color: HomeBankColor.white,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          height: 100,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(27),
-                            color: HomeBankColor.white,
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add_circle_outline_rounded,
-                                  color: HomeBankColor.red,
-                                ),
-                                Text(
-                                  "Разместить фото",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16,
-                                    color: HomeBankColor.red,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: TextField(
-                            style: TextStyle(
-                              color: HomeBankColor.white,
-                            ),
-                            decoration: const InputDecoration(
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: HomeBankColor.white, width: 1.0),
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: HomeBankColor.white, width: 1.0),
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              hintStyle: TextStyle(color: HomeBankColor.white),
-                              fillColor: HomeBankColor.red,
-                              focusColor: HomeBankColor.red,
-                              hintText: 'Название продукта',
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: TextField(
-                            style: TextStyle(
-                              color: HomeBankColor.white,
-                            ),
-                            decoration: const InputDecoration(
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: HomeBankColor.white, width: 1.0),
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: HomeBankColor.white, width: 1.0),
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              hintStyle: TextStyle(color: HomeBankColor.white),
-                              fillColor: HomeBankColor.red,
-                              focusColor: HomeBankColor.red,
-                              hintText: 'Стоимость',
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: TextField(
-                            minLines: 3,
-                            maxLines: 5,
-                            // allow user to enter 5 line in textfield
-                            keyboardType: TextInputType.multiline,
-                            style: TextStyle(
-                              color: HomeBankColor.white,
-                            ),
-                            decoration: const InputDecoration(
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: HomeBankColor.white, width: 1.0),
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide:
-                                    const BorderSide(color: HomeBankColor.white, width: 1.0),
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              ),
-                              hintStyle: TextStyle(color: HomeBankColor.white),
-                              fillColor: HomeBankColor.red,
-                              focusColor: HomeBankColor.red,
-                              hintText: 'Описание продукта',
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Center(
-                            child: Container(
-                              height: 50,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(27),
-                                color: HomeBankColor.white,
-                              ),
-                              child: Center(
-                                  child: Icon(
-                                Icons.add,
-                                color: HomeBankColor.red,
-                              )),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              });
-        },
-        backgroundColor: HomeBankColor.red,
-        child: Icon(
-          Icons.add,
-          color: HomeBankColor.white,
-        ),
-      ),
       backgroundColor: HomeBankColor.white,
       appBar: AppBar(
         centerTitle: true,
@@ -235,7 +27,7 @@ class _BasketScreenState extends State<BasketScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: HomeBankColor.white,
         title: Text(
-          "Корзина",
+          widget.isCustomer ? "Корзина" : "Ваши товары",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
@@ -265,39 +57,50 @@ class _BasketScreenState extends State<BasketScreen> {
                 SizedBox(
                   height: 24,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Популярные позиции",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: HomeBankColor.black,
+                if (widget.isCustomer)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Популярные позиции",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: HomeBankColor.black,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          "Показано 564 результата",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: HomeBankColor.black,
+                          SizedBox(
+                            height: 2,
                           ),
-                        ),
-                      ],
-                    ),
-                    SvgPicture.asset(
-                      "assets/icon/ic_filter.svg",
-                      fit: BoxFit.fill,
-                    )
-                  ],
-                ),
+                          Text(
+                            "Показано 564 результата",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: HomeBankColor.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SvgPicture.asset(
+                        "assets/icon/ic_filter.svg",
+                        fit: BoxFit.fill,
+                      )
+                    ],
+                  ),
+                if (!widget.isCustomer)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/icon/ic_filter.svg",
+                        fit: BoxFit.fill,
+                      )
+                    ],
+                  ),
                 SizedBox(
                   height: 6,
                 ),
@@ -400,19 +203,22 @@ class _BasketScreenState extends State<BasketScreen> {
                       Container(
                         height: 36,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: widget.isCustomer
+                              ? MainAxisAlignment.spaceBetween
+                              : MainAxisAlignment.end,
                           children: [
-                            ListView.builder(
-                              itemBuilder: (context, index) {
-                                return Icon(
-                                  Icons.star,
-                                  color: Color(0xFFFFA800),
-                                );
-                              },
-                              itemCount: stars > 3 ? 3 : stars,
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                            ),
+                            if (widget.isCustomer)
+                              ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return Icon(
+                                    Icons.star,
+                                    color: Color(0xFFFFA800),
+                                  );
+                                },
+                                itemCount: stars > 3 ? 3 : stars,
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                              ),
                             InkWell(
                               radius: 32,
                               child: DecoratedBox(
@@ -424,7 +230,7 @@ class _BasketScreenState extends State<BasketScreen> {
                                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                   child: Center(
                                     child: Text(
-                                      'Оформить',
+                                      widget.isCustomer ? 'Оформить' : "Изменить",
                                       style: TextStyle(
                                         color: HomeBankColor.white,
                                         fontSize: 14,

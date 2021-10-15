@@ -4,7 +4,9 @@ import 'package:homebank/ui/link_card/link_card_screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key key}) : super(key: key);
+  final bool isCustomer;
+
+  const ProfileScreen({Key key, this.isCustomer}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -15,19 +17,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HomeBankColor.lightest_grey,
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        backgroundColor: HomeBankColor.lightest_grey,
-        title: Text(
-          "Аккаунт",
-          style: TextStyle(
-            fontSize: 34,
-            fontWeight: FontWeight.w700,
-            color: HomeBankColor.black,
-          ),
-        ),
-      ),
+      appBar: widget.isCustomer
+          ? AppBar(
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              backgroundColor: HomeBankColor.lightest_grey,
+              title: Text(
+                "Аккаунт",
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w700,
+                  color: HomeBankColor.black,
+                ),
+              ),
+            )
+          : null,
       body: SafeArea(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
@@ -68,17 +72,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       icon: "assets/icon/ic_contact.svg",
                       title: "Контактная информация",
                       onClick: () {}),
-                  buildRequestTablet(
-                      icon: "assets/icon/ic_funding.svg",
-                      title: "Счета",
-                      onClick: () {
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => LinkCardScreen()));
-                      }),
+                  if (widget.isCustomer)
+                    buildRequestTablet(
+                        icon: "assets/icon/ic_funding.svg",
+                        title: "Счета",
+                        onClick: () {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => LinkCardScreen()));
+                        }),
+                  if (!widget.isCustomer)
+                    buildRequestTablet(
+                        icon: "assets/icon/ic_funding.svg", title: "Товары", onClick: () {}),
                   buildRequestTablet(
                       icon: "assets/icon/ic_bank.svg", title: "О банке", onClick: () {}),
-                  buildRequestTablet(
-                      icon: "assets/icon/ic_documents.svg", title: "Документы", onClick: () {}),
+                  if (widget.isCustomer)
+                    buildRequestTablet(
+                        icon: "assets/icon/ic_documents.svg", title: "Документы", onClick: () {}),
                   buildRequestTablet(
                       icon: "assets/icon/ic_settings.svg", title: "Настройки", onClick: () {}),
                 ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homebank/ui/register/register.screen.dart';
+import 'package:homebank/ui/choose/choose_screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -24,15 +24,11 @@ class _IntroScreenState extends State<IntroScreen> {
                 SizedBox(
                   height: 40,
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Image.asset(
-                      'assets/image/im_logo.png',
-                    ),
-                  ],
+                Padding(
+                  padding: EdgeInsets.only(left: 40),
+                  child: Image.asset(
+                    'assets/image/im_logo.png',
+                  ),
                 ),
                 Text(
                   'Бесконтакный\nкредит',
@@ -67,8 +63,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       child: Center(
                         child: Text(
                           'Зарегистрироваться ',
-                          style: TextStyle(
-                              color: HomeBankColor.white, fontSize: 16),
+                          style: TextStyle(color: HomeBankColor.white, fontSize: 16),
                         ),
                       ),
                     ),
@@ -76,7 +71,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterScreen()),
+                      MaterialPageRoute(builder: (context) => ChooseScreen()),
                     );
                   },
                 ),
