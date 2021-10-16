@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/ui/link_card/link_card_screen.dart';
+import 'package:homebank/ui/payment/payment.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -76,7 +77,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             context, MaterialPageRoute(builder: (context) => LinkCardScreen()));
                       }),
                   buildRequestTablet(
-                      icon: "assets/icon/ic_bank.svg", title: "О банке", onClick: () {}),
+                      icon: "assets/icon/ic_bank.svg",
+                      title: "О банке",
+                      onClick: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => PaymentScreen()));
+                      }),
                   buildRequestTablet(
                       icon: "assets/icon/ic_documents.svg", title: "Документы", onClick: () {}),
                   buildRequestTablet(
