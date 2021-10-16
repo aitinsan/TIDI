@@ -79,7 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 8,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     '№129030',
@@ -140,7 +141,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 'Подробнее',
-                                style: TextStyle(color: HomeBankColor.red, fontSize: 16),
+                                style: TextStyle(
+                                    color: HomeBankColor.red, fontSize: 16),
                               ),
                               Icon(
                                 Icons.arrow_forward,
@@ -188,7 +190,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ListView.builder(
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return buildDiscount("IPhone 12", "5% скидка до 18 октября!",
+                          return buildDiscount(
+                              "IPhone 12",
+                              "5% скидка до 18 октября!",
                               "assets/image/im_product.png");
                         },
                         itemCount: 4,

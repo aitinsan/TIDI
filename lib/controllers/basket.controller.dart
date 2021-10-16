@@ -14,4 +14,8 @@ class BasketController extends BaseController {
     busketItems.add(item);
     print(busketItems.list.first.name);
   }
+  void removeItemFromBusket(Item item) {
+    busketItems.remove(item);
+    print(busketItems.list.first.name);
+  }
 }

@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/data/entity/item.dart';
+import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class ItemScreen extends StatelessWidget {
   final BasketController ctrl;
   final Item item;
   final int stars;
+  final bool removeFromBusket;
 
-  const ItemScreen({Key key, @required this.ctrl, @required this.item, this.stars})
+  const ItemScreen(
+      {Key key,
+      @required this.ctrl,
+      @required this.item,
+      this.stars,
+      this.removeFromBusket = false})
       : super(key: key);
 
   @override
@@ -18,7 +25,10 @@ class ItemScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: HomeBankColor.red,
         elevation: 0,
-        actions: [Padding(padding: EdgeInsets.only(right: 16), child: Icon(Icons.ios_share))],
+        actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 16), child: Icon(Icons.ios_share))
+        ],
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -70,7 +80,8 @@ class ItemScreen extends StatelessWidget {
                                   height: 5,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(2),
-                                    color: index == 0 ? Colors.grey : Colors.white,
+                                    color:
+                                        index == 0 ? Colors.grey : Colors.white,
                                   ),
                                 ),
                               );
@@ -114,18 +125,21 @@ class ItemScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Text(item.name),
                       // ListView.builder(
                       //   itemBuilder: (context, index) {
-                      //     return Icon(
-                      //       Icons.star,
-                      //       color: Color(0xFFFFA800),
+                      //     return Flexible(
+                      //       child: Icon(
+                      //         Icons.star,
+                      //         color: Color(0xFFFFA800),
+                      //       ),
                       //     );
                       //   },
-                      //   itemCount: stars > 3 ? 3 : stars,
+                      //   physics: const NeverScrollableScrollPhysics(),
                       //   scrollDirection: Axis.horizontal,
+                      //   itemCount: 3,
                       //   shrinkWrap: true,
                       // ),
                     ],
@@ -152,15 +166,22 @@ class ItemScreen extends StatelessWidget {
                     height: 50,
                     child: Center(
                       child: Text(
-                        'Добавить в корзину',
-                        style: TextStyle(color: HomeBankColor.white, fontSize: 16),
+                        removeFromBusket
+                            ? 'Удалить из корзины'
+                            : 'Добавить в корзину',
+                        style:
+                            TextStyle(color: HomeBankColor.white, fontSize: 16),
                       ),
                     ),
                   ),
                 ),
                 onTap: () {
-                  ctrl.addItemToBusket(item);
+                  removeFromBusket
+                      ? ctrl.removeItemFromBusket(item)
+                      : ctrl.addItemToBusket(item);
+
                   Navigator.pop(context);
+                  
                 },
               ),
             ),

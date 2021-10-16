@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class ReceiptScreen extends StatelessWidget {
-  const ReceiptScreen({Key key}) : super(key: key);
+  ReceiptScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,20 +61,23 @@ class ReceiptScreen extends StatelessWidget {
                         ),
                         Text(
                           "Квитанция",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
                           height: 12,
                         ),
                         Text(
                           "-------------------------------------",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
                           height: 32,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 6),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -94,7 +97,8 @@ class ReceiptScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 6),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -114,7 +118,8 @@ class ReceiptScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 6),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -138,10 +143,12 @@ class ReceiptScreen extends StatelessWidget {
                         ),
                         Text(
                           "-------------------------------------",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 6),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -163,7 +170,8 @@ class ReceiptScreen extends StatelessWidget {
                         ),
                         Text(
                           "-------------------------------------",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
                           height: 40,
@@ -190,7 +198,8 @@ class ReceiptScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Home',
-                        style: TextStyle(color: HomeBankColor.white, fontSize: 16),
+                        style:
+                            TextStyle(color: HomeBankColor.white, fontSize: 16),
                       ),
                     ),
                   ),

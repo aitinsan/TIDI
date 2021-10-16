@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/controllers/catalog.controller.dart';
 import 'package:homebank/providers/controller_provider.dart';
+import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/catalog/catalog.screen.dart';
 import 'package:homebank/ui/home/home.screen.dart';
 import 'package:homebank/ui/map/map.screen.dart';
@@ -79,15 +80,15 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           setState(() {
                             currentScreen =
-                                MapScreen(); // if user taps on this dashboard tab will be active
+                                CatalogScreen(ctrl: ctrl,); // if user taps on this dashboard tab will be active
                             currentTab = 1;
                           });
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            SvgPicture.asset(
-                              'assets/icon/ic_map.svg',
+                            Icon(
+                              Icons.category_sharp,
                               color: currentTab == 1
                                   ? HomeBankColor.red
                                   : HomeBankColor.black,
@@ -111,7 +112,7 @@ class _HomeState extends State<Home> {
                         onPressed: () {
                           setState(() {
                             currentScreen =
-                                CatalogScreen(ctrl: ctrl,); // if user taps on this dashboard tab will be active
+                                BasketScreen(ctrl: ctrl,); // if user taps on this dashboard tab will be active
                             currentTab = 2;
                           });
                         },

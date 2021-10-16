@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/ui/payment/receipt.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({Key key}) : super(key: key);
+  final BasketController ctrl;
+  const PaymentScreen({Key key,@required this.ctrl}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -138,8 +140,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               CreditCardWidget(
                 cardBgColor: HomeBankColor.red,
                 cardNumber: "4225 9765 0008 6141",
-                expiryDate: "09/24",
-                cardHolderName: "Dwayne Johnson",
+                expiryDate: "09/28",
+                cardHolderName: "Tamina Temirkhan",
                 cvvCode: "111",
                 showBackView: false,
                 obscureCardNumber: false,

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:homebank/controllers/basket.controller.dart';
-import 'package:homebank/providers/controller_provider.dart';
+import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class ScannerScreen extends StatefulWidget {
   final BasketController ctrl;
 
-  const ScannerScreen({Key key,@required this.ctrl}) : super(key: key);
+  const ScannerScreen({Key key, @required this.ctrl}) : super(key: key);
   @override
   _ScannerScreenState createState() => _ScannerScreenState();
 }
@@ -114,48 +114,41 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 SizedBox(
                   height: 16,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Результат поиска:',
-                      style: TextStyle(
-                        fontSize: 18,
+                InkWell(
+                  hoverColor: HomeBankColor.red,
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    color: HomeBankColor.red,
+                    child: Center(
+                      child: Text(
+                        'Добавить в корзину',
+                        style: TextStyle(
+                            color: HomeBankColor.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: widget.ctrl.busketItems.list.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: HomeBankColor.grey2,
+                  ),
+                  onTap: () {
+                    final snackBar = SnackBar(
+                      content: Text('Добавлено в корзину'),
+                      backgroundColor: HomeBankColor.green,
+                      action: SnackBarAction(
+                        label: 'Перейти',
+                        textColor: HomeBankColor.white,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  BasketScreen(ctrl: widget.ctrl),
                             ),
-                            child: Image.asset('assets/image/im_product.png'),
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(widget.ctrl.busketItems.list[index].name),
-                                Text('4/64 RAM'),
-                                Text('${widget.ctrl.busketItems.list[index].cost} kzt'),
-                              ],
-                            ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                      onTap: () {},
                     );
+                    Scaffold.of(context).showSnackBar(snackBar);
                   },
                 )
               ],

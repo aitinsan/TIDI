@@ -15,7 +15,7 @@ class MapScreenState extends State<MapScreen> {
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(51.169392, 71.449074),
-    zoom: 11,
+    zoom: 12,
   );
 
   Marker _marker(double longitude, latitude) {
@@ -40,7 +40,16 @@ class MapScreenState extends State<MapScreen> {
           style: TextStyle(color: HomeBankColor.red),
         ),
         backgroundColor: HomeBankColor.white,
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: HomeBankColor.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        // automaticallyImplyLeading: false,
         centerTitle: true,
       ),
       body: GoogleMap(
