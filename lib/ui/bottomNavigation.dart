@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/controllers/basket.controller.dart';
-import 'package:homebank/controllers/catalog.controller.dart';
 import 'package:homebank/providers/controller_provider.dart';
 import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/catalog/catalog.screen.dart';
@@ -22,12 +21,12 @@ class _HomeState extends State<Home> {
   int currentTab = 0; // to keep track of active tab index
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen =
-      HomeScreen(ctrl: CatalogController()); // Our first view in viewport
+      HomeScreen(ctrl: BasketController()); // Our first view in viewport
 
   @override
   Widget build(BuildContext context) {
-    return ControllerProvider<CatalogController>(
-      create: () => CatalogController(),
+    return ControllerProvider<BasketController>(
+      create: () => BasketController(),
       builder: (context, ctrl) => Scaffold(
         body: currentScreen,
         floatingActionButton: FloatingActionButton(

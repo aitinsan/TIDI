@@ -3,10 +3,16 @@ import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/ui/item/item.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
-class BillingScreen extends StatelessWidget {
-  final BasketController ctrl;
-  const BillingScreen({Key key, @required this.ctrl}) : super(key: key);
 
+class BillingScreen extends StatefulWidget {
+  final BasketController ctrl;
+  BillingScreen({Key key,@required this.ctrl}) : super(key: key);
+
+  @override
+  _BillingScreenState createState() => _BillingScreenState();
+}
+
+class _BillingScreenState extends State<BillingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,29 +112,42 @@ class BillingScreen extends StatelessWidget {
                 },
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: ctrl.transactions.list.length,
+                itemCount: widget.ctrl.transactions.list.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ItemScreen(
-                          ctrl: ctrl,
-                          transaction: ctrl.transactions.list[index],
-                          item: ctrl.transactions.list[index].item,
-                          operation: OperationType.change,
-                        ),
-                      ),
-                    ),
+                    onTap: () => widget.ctrl.transactions.list[index].isRefundable
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ItemScreen(
+                                ctrl: widget.ctrl,
+                                transaction: widget.ctrl.transactions.list[index],
+                                item: widget.ctrl.transactions.list[index].item,
+                                operation: OperationType.change,
+                              ),
+                            ))
+                        : {},
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '№${ctrl.transactions.list[index].id}',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '№${widget.ctrl.transactions.list[index].id}',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            widget.ctrl.transactions.list[index].isRefundable
+                                ? Container(
+                                    color: Colors.yellow,
+                                    child: Text('Переделать в рассрочку'),
+                                  )
+                                : SizedBox(),
+                          ],
                         ),
                         SizedBox(
                           height: 4,
@@ -138,7 +157,7 @@ class BillingScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Покупка ${ctrl.transactions.list[index].item.name}',
+                              'Покупка ${widget.ctrl.transactions.list[index].item.name}',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: HomeBankColor.lightGrey,
@@ -165,3 +184,5 @@ class BillingScreen extends StatelessWidget {
     );
   }
 }
+
+

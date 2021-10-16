@@ -12,6 +12,12 @@ class BasketController extends BaseController {
   BasketController() {
     busketItems = ListModel(controller: this, initialList: []);
     transactions =  ListModel(controller: this, initialList: []);
+    items = ListModel(controller: this, initialList: [
+      Item(id: 1, name: 'IPHONE 10', barcode: '123456789104', cost: 100,isCredit: false, isRefundable: true),
+      Item(id: 1, name: 'IPHONE 9', barcode: '4321544253', cost: 30,isCredit: false, isRefundable: true),
+      Item(id: 1, name: 'IPHONE 8', barcode: '4321513253', cost: 600,isCredit: false, isRefundable: true),
+      Item(id: 1, name: 'IPHONE 7', barcode: '4321542253', cost: 7600,isCredit: false, isRefundable: true),
+    ]);
   }
 
   void addItemToBusket(Item item) {
@@ -37,4 +43,6 @@ class BasketController extends BaseController {
   void changeCreditType(Transaction transaction) {
     transaction.changeCreditType();
   }
+  ListModel<Item> items;
+
 }

@@ -30,99 +30,102 @@ class _BasketScreenState extends State<BasketScreen> {
     return Scaffold(
       backgroundColor: HomeBankColor.lightest_grey,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  children: [
-                    Text(
-                      'Ваша корзина:',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: widget.ctrl.busketItems.list.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: HomeBankColor.grey2,
-                            ),
-                            child: Image.asset('assets/image/im_product.png'),
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(widget.ctrl.busketItems.list[index].name),
-                                Text('4/64 RAM'),
-                                Text(
-                                    '${widget.ctrl.busketItems.list[index].cost} kzt'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ItemScreen(
-                              ctrl: widget.ctrl,
-                              item: widget.ctrl.busketItems.list[index],
-                              operation: OperationType.delete,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                InkWell(
-                  hoverColor: HomeBankColor.red,
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    color: HomeBankColor.red,
-                    child: Center(
-                      child: Text(
-                        'Купить товары',
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Ваша корзина:',
                         style: TextStyle(
-                            color: HomeBankColor.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PaymentScreen(
-                          ctrl: widget.ctrl,
+                          fontSize: 18,
                         ),
                       ),
-                    );
-                  },
-                )
-              ],
-            ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  ListView.builder(
+                    // physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: widget.ctrl.busketItems.list.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: HomeBankColor.grey2,
+                              ),
+                              child: Image.asset('assets/image/im_product.png'),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                      widget.ctrl.busketItems.list[index].name),
+                                  Text('4/64 RAM'),
+                                  Text(
+                                      '${widget.ctrl.busketItems.list[index].cost} kzt'),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ItemScreen(
+                                ctrl: widget.ctrl,
+                                item: widget.ctrl.busketItems.list[index],
+                                operation: OperationType.delete,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+              InkWell(
+                hoverColor: HomeBankColor.red,
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  color: HomeBankColor.red,
+                  child: Center(
+                    child: Text(
+                      'Купить товары',
+                      style: TextStyle(
+                          color: HomeBankColor.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(
+                        ctrl: widget.ctrl,
+                      ),
+                    ),
+                  );
+                },
+              )
+            ],
           ),
         ),
       ),

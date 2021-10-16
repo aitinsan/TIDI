@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:homebank/controllers/catalog.controller.dart';
+import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/data/entity/item.dart';
 import 'package:homebank/ui/item/item.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key key, @required this.ctrl}) : super(key: key);
-  final CatalogController ctrl;
+  final BasketController ctrl;
 
   @override
   _CatalogScreenState createState() => _CatalogScreenState();
@@ -126,7 +126,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
       double prevPrice,
       int stars,
       Item item,
-      CatalogController ctrl}) {
+      BasketController ctrl}) {
     return Padding(
       padding: EdgeInsets.only(top: 18, left: 16, right: 16),
       child: Card(

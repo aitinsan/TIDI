@@ -192,8 +192,13 @@ class ItemScreen extends StatelessWidget {
                       : operation == OperationType.change
                           ? ctrl.changeTransactionToCredit(transaction)
                           : ctrl.addItemToBusket(item);
+                  int count = 0;
 
-                  Navigator.pop(context);
+                  operation == OperationType.change
+                      ? Navigator.popUntil(context, (route) {
+                          return count++ == 2;
+                        })
+                      : Navigator.pop(context);
                 },
               ),
             ),
