@@ -2,21 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/data/entity/item.dart';
+import 'package:homebank/data/entity/transaction.dart';
 import 'package:homebank/ui/basket/basket.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
+enum OperationType {
+  add,
+  delete,
+  change,
+}
+
 class ItemScreen extends StatelessWidget {
   final BasketController ctrl;
+  final Transaction transaction;
   final Item item;
   final int stars;
-  final bool removeFromBusket;
+  final OperationType operation;
 
   const ItemScreen(
       {Key key,
       @required this.ctrl,
       @required this.item,
       this.stars,
-      this.removeFromBusket = false})
+      this.operation = OperationType.add,
+      this.transaction})
       : super(key: key);
 
   @override
@@ -166,9 +175,11 @@ class ItemScreen extends StatelessWidget {
                     height: 50,
                     child: Center(
                       child: Text(
-                        removeFromBusket
+                        operation == OperationType.delete
                             ? 'Удалить из корзины'
-                            : 'Добавить в корзину',
+                            : operation == OperationType.change
+                                ? 'Применить'
+                                : 'Добавить в корзину',
                         style:
                             TextStyle(color: HomeBankColor.white, fontSize: 16),
                       ),
@@ -176,12 +187,13 @@ class ItemScreen extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  removeFromBusket
+                  operation == OperationType.delete
                       ? ctrl.removeItemFromBusket(item)
-                      : ctrl.addItemToBusket(item);
+                      : operation == OperationType.change
+                          ? ctrl.changeTransactionToCredit(transaction)
+                          : ctrl.addItemToBusket(item);
 
                   Navigator.pop(context);
-                  
                 },
               ),
             ),

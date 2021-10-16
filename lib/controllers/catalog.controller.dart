@@ -8,10 +8,10 @@ class CatalogController extends BasketController {
 
   CatalogController() {
     items = ListModel(controller: this, initialList: [
-      Item(id: 1, name: 'IPHONE 10', barcode: '4321543253', cost: 100),
-      Item(id: 1, name: 'IPHONE 9', barcode: '4321543253', cost: 30),
-      Item(id: 1, name: 'IPHONE 8', barcode: '4321543253', cost: 600),
-      Item(id: 1, name: 'IPHONE 7', barcode: '4321543253', cost: 7600),
+      Item(id: 1, name: 'IPHONE 10', barcode: '4321543253', cost: 100,isCredit: false, isRefundable: true),
+      Item(id: 1, name: 'IPHONE 9', barcode: '4321544253', cost: 30,isCredit: false, isRefundable: true),
+      Item(id: 1, name: 'IPHONE 8', barcode: '4321513253', cost: 600,isCredit: false, isRefundable: true),
+      Item(id: 1, name: 'IPHONE 7', barcode: '4321542253', cost: 7600,isCredit: false, isRefundable: true),
     ]);
   }
 

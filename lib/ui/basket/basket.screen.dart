@@ -18,6 +18,14 @@ class BasketScreen extends StatefulWidget {
 
 class _BasketScreenState extends State<BasketScreen> {
   @override
+  void didUpdateWidget(BasketScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget != widget) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HomeBankColor.lightest_grey,
@@ -78,7 +86,7 @@ class _BasketScreenState extends State<BasketScreen> {
                             builder: (context) => ItemScreen(
                               ctrl: widget.ctrl,
                               item: widget.ctrl.busketItems.list[index],
-                              removeFromBusket: true,
+                              operation: OperationType.delete,
                             ),
                           ),
                         );
@@ -103,15 +111,14 @@ class _BasketScreenState extends State<BasketScreen> {
                     ),
                   ),
                   onTap: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PaymentScreen(
-                              ctrl: widget.ctrl,
-                              
-                            ),
-                          ),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PaymentScreen(
+                          ctrl: widget.ctrl,
+                        ),
+                      ),
+                    );
                   },
                 )
               ],

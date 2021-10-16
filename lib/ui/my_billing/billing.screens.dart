@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:homebank/controllers/basket.controller.dart';
+import 'package:homebank/ui/item/item.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class BillingScreen extends StatelessWidget {
-  const BillingScreen({Key key}) : super(key: key);
+  final BasketController ctrl;
+  const BillingScreen({Key key, @required this.ctrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,42 +106,55 @@ class BillingScreen extends StatelessWidget {
                 },
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: ctrl.transactions.list.length,
                 itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '№129030',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
+                  return InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ItemScreen(
+                          ctrl: ctrl,
+                          transaction: ctrl.transactions.list[index],
+                          item: ctrl.transactions.list[index].item,
+                          operation: OperationType.change,
                         ),
-
                       ),
-                      SizedBox(height: 4,),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Покупка “Apple”',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: HomeBankColor.lightGrey,
-                            ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '№${ctrl.transactions.list[index].id}',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
                           ),
-                          
-                          Text(
-                            'TUE 22 Jun 2020',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: HomeBankColor.lightGrey,
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Покупка ${ctrl.transactions.list[index].item.name}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: HomeBankColor.lightGrey,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Text(
+                              'TUE 22 Jun 2020',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: HomeBankColor.lightGrey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   );
                 },
               )

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class ReceiptScreen extends StatelessWidget {
-  ReceiptScreen({Key key}) : super(key: key);
+  final BasketController ctrl;
+  ReceiptScreen({Key key,@required this.ctrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

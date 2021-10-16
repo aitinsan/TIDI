@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:homebank/controllers/basket.controller.dart';
+import 'package:homebank/data/entity/transaction.dart';
 import 'package:homebank/ui/payment/receipt.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class PaymentScreen extends StatefulWidget {
   final BasketController ctrl;
-  const PaymentScreen({Key key,@required this.ctrl}) : super(key: key);
+  const PaymentScreen({Key key, @required this.ctrl}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -161,14 +162,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       child: Center(
                         child: Text(
                           'Оплатить',
-                          style: TextStyle(color: HomeBankColor.white, fontSize: 16),
+                          style: TextStyle(
+                              color: HomeBankColor.white, fontSize: 16),
                         ),
                       ),
                     ),
                   ),
                   onTap: () {
+                    for (var item in widget.ctrl.busketItems.list) {
+                      widget.ctrl.transactions.list.add(
+                        Transaction(
+                          id: widget.ctrl.getId(),
+                          item: item,
+                        ),
+                      );
+                    }
+                    widget.ctrl.busketItems.clear();
+
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => ReceiptScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ReceiptScreen(ctrl: widget.ctrl,),
+                      ),
+                    );
                   },
                 ),
               ),

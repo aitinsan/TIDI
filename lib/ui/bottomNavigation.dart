@@ -21,7 +21,8 @@ class _HomeState extends State<Home> {
 
   int currentTab = 0; // to keep track of active tab index
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = HomeScreen(); // Our first view in viewport
+  Widget currentScreen =
+      HomeScreen(ctrl: CatalogController()); // Our first view in viewport
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +36,9 @@ class _HomeState extends State<Home> {
           onPressed: () {
             setState(() {
               currentTab = 5;
-              currentScreen =
-                  ScannerScreen(ctrl: ctrl,); // if user taps on this dashboard tab will be active
+              currentScreen = ScannerScreen(
+                ctrl: ctrl,
+              ); // if user taps on this dashboard tab will be active
             });
           },
         ),
@@ -58,8 +60,9 @@ class _HomeState extends State<Home> {
                         minWidth: 40,
                         onPressed: () {
                           setState(() {
-                            currentScreen =
-                                HomeScreen(); // if user taps on this dashboard tab will be active
+                            currentScreen = HomeScreen(
+                              ctrl: ctrl,
+                            ); // if user taps on this dashboard tab will be active
                             currentTab = 0;
                           });
                         },
@@ -79,8 +82,9 @@ class _HomeState extends State<Home> {
                         minWidth: 40,
                         onPressed: () {
                           setState(() {
-                            currentScreen =
-                                CatalogScreen(ctrl: ctrl,); // if user taps on this dashboard tab will be active
+                            currentScreen = CatalogScreen(
+                              ctrl: ctrl,
+                            ); // if user taps on this dashboard tab will be active
                             currentTab = 1;
                           });
                         },
@@ -111,8 +115,9 @@ class _HomeState extends State<Home> {
                         minWidth: 40,
                         onPressed: () {
                           setState(() {
-                            currentScreen =
-                                BasketScreen(ctrl: ctrl,); // if user taps on this dashboard tab will be active
+                            currentScreen = BasketScreen(
+                              ctrl: ctrl,
+                            ); // if user taps on this dashboard tab will be active
                             currentTab = 2;
                           });
                         },

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:homebank/controllers/basket.controller.dart';
 import 'package:homebank/ui/my_billing/billing.screens.dart';
 import 'package:homebank/ui/style/colors.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+  final BasketController ctrl;
+  HomeScreen({Key key,@required this.ctrl}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -113,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => BillingScreen(),
+                                          builder: (context) => BillingScreen(ctrl: widget.ctrl,),
                                         ),
                                       );
                                     },
