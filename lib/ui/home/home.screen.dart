@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homebank/ui/my_billing/billing.screens.dart';
 import 'package:homebank/ui/style/colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -79,8 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 8,
                               ),
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     '№129030',
@@ -131,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Акции',
+                            'Кэшбек',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w500,
@@ -141,8 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 'Подробнее',
-                                style: TextStyle(
-                                    color: HomeBankColor.red, fontSize: 16),
+                                style: TextStyle(color: HomeBankColor.red, fontSize: 16),
                               ),
                               Icon(
                                 Icons.arrow_forward,
@@ -179,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Информация о бонусах',
+                            'Информация об акциях',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w500,
@@ -190,13 +188,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ListView.builder(
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              // Text('vcxz'),
-                            ],
-                          );
+                          return buildDiscount("IPhone 12", "5% скидка до 18 октября!",
+                              "assets/image/im_product.png");
                         },
-                        itemCount: 1,
+                        itemCount: 4,
                       ),
                     ],
                   ),
@@ -206,6 +201,52 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildDiscount(String title, String discount, String asset) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  discount,
+                  style: TextStyle(),
+                ),
+                Text(
+                  "Успей купить!",
+                  style: TextStyle(),
+                ),
+              ],
+            ),
+            Spacer(),
+            Container(
+              width: 60,
+              height: 60,
+              child: CircleAvatar(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(80),
+                  child: Image(
+                    image: AssetImage(asset),
+                  ),
+                ),
+                backgroundColor: Colors.transparent,
+              ),
+            ),
+          ],
+        ),
+        Divider(),
+      ],
     );
   }
 }

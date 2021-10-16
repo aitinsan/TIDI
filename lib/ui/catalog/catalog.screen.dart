@@ -11,6 +11,7 @@ import 'package:homebank/ui/style/colors.dart';
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({Key key, @required this.ctrl}) : super(key: key);
   final CatalogController ctrl;
+
   @override
   _CatalogScreenState createState() => _CatalogScreenState();
 }
@@ -145,8 +146,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   decoration: BoxDecoration(
                       color: HomeBankColor.red,
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(8),
-                          topLeft: Radius.circular(8))),
+                          bottomLeft: Radius.circular(8), topLeft: Radius.circular(8))),
                   height: 131,
                   child: Image.asset(
                     image,
@@ -157,8 +157,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
               Flexible(
                 flex: 6,
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Column(
                     children: [
                       Text(
@@ -222,12 +221,10 @@ class _CatalogScreenState extends State<CatalogScreen> {
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   color: HomeBankColor.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(32)),
+                                  borderRadius: BorderRadius.all(Radius.circular(32)),
                                 ),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 10),
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                   child: Center(
                                     child: Text(
                                       'Оформить',
@@ -246,6 +243,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                                   builder: (context) => ItemScreen(
                                     ctrl: ctrl,
                                     item: item,
+                                    stars: stars,
                                   ),
                                 ),
                               ),

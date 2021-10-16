@@ -67,23 +67,15 @@ class _LinkCardScreenState extends State<LinkCardScreen> {
               const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
-                  decoration: BoxDecoration(
-                      color: HomeBankColor.red, borderRadius: BorderRadius.circular(16)),
-                  child: CreditCardWidget(
-                    cardBgColor: HomeBankColor.red,
-                    cardNumber: cardNumber,
-                    expiryDate: expiryDate,
-                    cardHolderName: cardHolderName,
-                    cvvCode: cvvCode,
-                    showBackView: isCvvFocused,
-                    obscureCardNumber: true,
-                    obscureCardCvv: true,
-                  ),
-                ),
+              CreditCardWidget(
+                cardBgColor: HomeBankColor.red,
+                cardNumber: cardNumber,
+                expiryDate: expiryDate,
+                cardHolderName: cardHolderName,
+                cvvCode: cvvCode,
+                showBackView: isCvvFocused,
+                obscureCardNumber: true,
+                obscureCardCvv: true,
               ),
               Flexible(
                 child: SingleChildScrollView(
