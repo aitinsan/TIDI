@@ -29,6 +29,9 @@ dependencies:
   flutter_credit_card:
   google_maps_flutter: ^1.2.0
   dio: ^3.0.10
+  provider: ^4.3.3
+  nested: ^0.0.4
+  validators: ^2.0.0+1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0

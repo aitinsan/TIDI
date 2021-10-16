@@ -3,16 +3,19 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:homebank/controllers/catalog.controller.dart';
+import 'package:homebank/data/entity/item.dart';
+import 'package:homebank/ui/item/item.screen.dart';
 import 'package:homebank/ui/style/colors.dart';
 
-class BasketScreen extends StatefulWidget {
-  const BasketScreen({Key key}) : super(key: key);
-
+class CatalogScreen extends StatefulWidget {
+  const CatalogScreen({Key key, @required this.ctrl}) : super(key: key);
+  final CatalogController ctrl;
   @override
-  _BasketScreenState createState() => _BasketScreenState();
+  _CatalogScreenState createState() => _CatalogScreenState();
 }
 
-class _BasketScreenState extends State<BasketScreen> {
+class _CatalogScreenState extends State<CatalogScreen> {
   TextEditingController _searchController = TextEditingController();
 
   @override
@@ -25,7 +28,7 @@ class _BasketScreenState extends State<BasketScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: HomeBankColor.white,
         title: Text(
-          "Корзина",
+          "Каталог",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w700,
@@ -97,14 +100,16 @@ class _BasketScreenState extends State<BasketScreen> {
           Flexible(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: 4,
+                itemCount: widget.ctrl.items.list.length,
                 itemBuilder: (context, index) {
                   return buildProductCard(
                     image: "assets/image/im_product.png",
-                    title: "Minavi Headseat Pro Gaming",
-                    price: 30.99,
+                    title: widget.ctrl.items.list[index].name,
+                    price: widget.ctrl.items.list[index].cost.toDouble(),
                     prevPrice: 30.99,
                     stars: index + 1,
+                    ctrl: widget.ctrl,
+                    item: widget.ctrl.items.list[index],
                   );
                 }),
           )
@@ -113,7 +118,14 @@ class _BasketScreenState extends State<BasketScreen> {
     );
   }
 
-  Widget buildProductCard({String image, String title, double price, double prevPrice, int stars}) {
+  Widget buildProductCard(
+      {String image,
+      String title,
+      double price,
+      double prevPrice,
+      int stars,
+      Item item,
+      CatalogController ctrl}) {
     return Padding(
       padding: EdgeInsets.only(top: 18, left: 16, right: 16),
       child: Card(
@@ -133,7 +145,8 @@ class _BasketScreenState extends State<BasketScreen> {
                   decoration: BoxDecoration(
                       color: HomeBankColor.red,
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(8), topLeft: Radius.circular(8))),
+                          bottomLeft: Radius.circular(8),
+                          topLeft: Radius.circular(8))),
                   height: 131,
                   child: Image.asset(
                     image,
@@ -144,7 +157,8 @@ class _BasketScreenState extends State<BasketScreen> {
               Flexible(
                 flex: 6,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Column(
                     children: [
                       Text(
@@ -208,10 +222,12 @@ class _BasketScreenState extends State<BasketScreen> {
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   color: HomeBankColor.red,
-                                  borderRadius: BorderRadius.all(Radius.circular(32)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(32)),
                                 ),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
                                   child: Center(
                                     child: Text(
                                       'Оформить',
@@ -224,7 +240,15 @@ class _BasketScreenState extends State<BasketScreen> {
                                   ),
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ItemScreen(
+                                    ctrl: ctrl,
+                                    item: item,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
